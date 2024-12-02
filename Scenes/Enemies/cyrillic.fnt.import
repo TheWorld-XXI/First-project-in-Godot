@@ -1,0 +1,16 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://t7su6gob234d"
+valid=false
+
+[deps]
+
+source_file="res://Scenes/Enemies/cyrillic.fnt"
+
+[params]
+
+fallbacks=[]
+compress=true
+scaling_mode=2

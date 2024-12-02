@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6a7wde8vr5we"]
+
+[ext_resource type="Texture2D" uid="uid://b6do8v77mohq2" path="res://Assets/Warrior sprites/warriorslashfx-Sheet.png" id="1_4dws0"]
+[ext_resource type="Script" path="res://Scripts/laser.gd" id="1_a7qlx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dlrbn"]
+radius = 6.0
+height = 26.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmup4"]
+atlas = ExtResource("1_4dws0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kl7ou"]
+atlas = ExtResource("1_4dws0")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gee6f"]
+atlas = ExtResource("1_4dws0")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_km6or"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmup4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kl7ou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gee6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kl7ou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmup4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Laser" type="CharacterBody2D"]
+script = ExtResource("1_a7qlx")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_dlrbn")
+debug_color = Color(0.952691, 0.022303, 0.546122, 0.42)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_km6or")
+autoplay = "default"
+frame_progress = 0.404181
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
